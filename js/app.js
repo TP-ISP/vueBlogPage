@@ -1,6 +1,6 @@
 
-Vue.component('my-component', {
-    template: '#myComponent'
+Vue.component('user-post', {
+    template: '#userPost'
 })
 
 new Vue({

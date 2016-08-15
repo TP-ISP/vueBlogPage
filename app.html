@@ -3,17 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
     <title></title>
 </head>
 
 <body>
     <div id="app">
-        <my-component></my-component>
+        <user-post></user-post>
     </div>
-    <template id="myComponent">
-        <div>This is a component!</div>
+    <template id="userPost">
+        <div class="user">
+            <div class="user__avatar"></div>
+            <div class="user__description">
+                <h2 class="user__username">John Doe</h2>
+                <p class="user__excerpt">I'm John Doe, a vertically aligned type of guy. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+        </div>
     </template>
 </body>
 <script src="js/vue.min.js"></script>
 <script src="js/app.js"></script>
+
 </html>
