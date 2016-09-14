@@ -5,6 +5,9 @@ module.exports = {
    '/list': {
     component: require('./components/list')
   },
+  '/item': {
+  	component: require('./components/item')
+  },
   '*': {
     component: require('./components/notFound')
   }

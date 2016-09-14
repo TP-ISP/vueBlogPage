@@ -13060,6 +13060,9 @@
 	  '/list': {
 	    component: __webpack_require__(8)
 	  },
+	  '/item': {
+	    component: __webpack_require__(11)
+	  },
 	  '*': {
 	    component: __webpack_require__(10)
 	  }
@@ -13081,7 +13084,7 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"user\">\r\n    <div class=\"user__avatar\"></div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">John Doe</h2>\r\n        <p><a v-link=\"{path:'/list'}\" >List Page</a></p>\r\n        <p class=\"user__excerpt\">I'm John Doe, a vertically aligned type of guy.</p>\r\n    </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"user\">\r\n    <div class=\"user__avatar\"></div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">John Doe</h2>\r\n        <p><a v-link=\"{path:'/list'}\" >List Page</a><a v-link=\"{path:'/item'}\" >List item</a></p>\r\n        <p class=\"user__excerpt\">I'm John Doe, a vertically aligned type of guy.</p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
 /* 8 */
@@ -13109,6 +13112,30 @@
 /***/ function(module, exports) {
 
 	"use strict";
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	module.exports = {
+	  template: __webpack_require__(12),
+
+	  data: function data() {
+	    return { items: [{ "avatar": 1, "name": "John Doe", "excerpt": "I'm John Doe, a vertically aligned type of guy." }, { "avatar": 2, "name": "Sansha", "excerpt": "This is the second post." }] };
+	  },
+
+	  ready: function ready() {
+	    console.log("item ready!");
+	  }
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"user\" v-for=\"item in items\">\r\n    <div class=\"user__avatar\">{{item.avatar}}</div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">{{item.name}}</h2>\r\n        <p class=\"user__excerpt\">{{item.excerpt}}</p>\r\n    </div>\r\n</div>";
 
 /***/ }
 /******/ ]);
