@@ -13060,6 +13060,10 @@
 	  '/list': {
 	    component: __webpack_require__(8)
 	  },
+	  '/show/:id': {
+	    name: "show",
+	    component: __webpack_require__(13)
+	  },
 	  '/item': {
 	    component: __webpack_require__(10)
 	  },
@@ -13084,7 +13088,7 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"user\">\r\n    <div class=\"user__avatar\"></div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">John Doe</h2>\r\n        <p><a v-link=\"{path:'/list'}\" >List Page</a><a v-link=\"{path:'/item'}\" >List item</a></p>\r\n        <p class=\"user__excerpt\">I'm John Doe, a vertically aligned type of guy.</p>\r\n    </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"user\">\r\n    <div class=\"user__id\"></div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">John Doe</h2>\r\n        <p><a v-link=\"{path:'/list'}\" >List Page</a><a v-link=\"{path:'/item'}\" >List item</a></p>\r\n        <p class=\"user__excerpt\">I'm John Doe, a vertically aligned type of guy.</p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
 /* 8 */
@@ -13102,7 +13106,7 @@
 	  template: __webpack_require__(9),
 
 	  data: function data() {
-	    return { items: [{ "avatar": 1, "name": "John Doe", "excerpt": "I'm John Doe, a vertically aligned type of guy." }, { "avatar": 2, "name": "Sansha", "excerpt": "This is the second post." }] };
+	    return { items: [{ "id": 1, "name": "John Doe", "excerpt": "I'm John Doe, a vertically aligned type of guy." }, { "id": 2, "name": "Sansha", "excerpt": "This is the second post." }] };
 	  },
 
 	  components: {
@@ -13156,7 +13160,7 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1>List</h1>\r\n<hr/>\r\n\r\n<p>Hello List Page!</p>\r\n<ul>\r\n    <li v-for=\"(index,item) in items\">\r\n         <item v-bind:avatar=\"item.avatar\" v-bind:name=\"item.name\" v-bind:excerpt=\"item.excerpt\"></item>\r\n    </li>\r\n</ul>\r\n";
+	module.exports = "<h1>List</h1>\r\n<hr/>\r\n\r\n<p>Hello List Page!</p>\r\n<ul>\r\n    <li v-for=\"(index,item) in items\">\r\n         <item v-bind:id=\"item.id\" v-bind:name=\"item.name\" v-bind:excerpt=\"item.excerpt\"></item>\r\n    </li>\r\n</ul>\r\n";
 
 /***/ },
 /* 10 */
@@ -13167,10 +13171,10 @@
 	module.exports = {
 	  template: __webpack_require__(11),
 
-	  props: ["avatar", "name", "excerpt"],
+	  props: ["id", "name", "excerpt"],
 
 	  data: function data() {
-	    return { items: [{ "avatar": 1, "name": "John Doe", "excerpt": "I'm John Doe, a vertically aligned type of guy." }, { "avatar": 2, "name": "Sansha", "excerpt": "This is the second post." }] };
+	    return { items: [{ "id": 1, "name": "John Doe", "excerpt": "I'm John Doe, a vertically aligned type of guy." }, { "id": 2, "name": "Sansha", "excerpt": "This is the second post." }] };
 	  },
 
 	  ready: function ready() {
@@ -13182,13 +13186,46 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"user\">\r\n    <div class=\"user__avatar\">{{avatar}}</div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">{{name}}</h2>\r\n        <p class=\"user__excerpt\">{{excerpt}}</p>\r\n    </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"user\">\r\n    <div class=\"user__id\">{{id}}</div>\r\n    <div class=\"user__description\" v-link=\"{name:'show', params:{'id':id}}\">\r\n        <h2 class=\"user__username\">{{name}}</h2>\r\n        <p class=\"user__excerpt\">{{excerpt}}</p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
 	"use strict";
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	module.exports = {
+	  template: __webpack_require__(14),
+
+	  data: function data() {
+	    return {};
+	  },
+
+	  created: function created() {
+	    var id = this.$route.params.id;
+	    if (id === 1) {
+	      this.$data = { "id": id, "name": "hello111", "age": 24 };
+	    } else {
+	      this.$data = { "id": id, "name": "hello222", "age": 28 };
+	    }
+	  },
+
+	  ready: function ready() {
+	    console.log(this.$data);
+	  }
+	};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = "<h1>Show</h1>\r\n<hr/>\r\n\r\n<p>Hello show page!</p>\r\n\r\n<p>id:{{id}}</p>\r\n<p>name:{{name}}</p>\r\n<p>age:{{age}}</p>\r\n";
 
 /***/ }
 /******/ ]);

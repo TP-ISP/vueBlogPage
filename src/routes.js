@@ -5,6 +5,10 @@ module.exports = {
    '/list': {
     component: require('./components/list')
   },
+  '/show/:id': {
+    name:"show",
+    component: require('./components/show')
+  },
   '/item': {
   	component: require('./components/item')
   },

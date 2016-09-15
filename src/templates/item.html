@@ -1,6 +1,6 @@
 <div class="user">
-    <div class="user__avatar">{{avatar}}</div>
-    <div class="user__description">
+    <div class="user__id">{{id}}</div>
+    <div class="user__description" v-link="{name:'show', params:{'id':id}}">
         <h2 class="user__username">{{name}}</h2>
         <p class="user__excerpt">{{excerpt}}</p>
     </div>
