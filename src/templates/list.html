@@ -4,6 +4,6 @@
 <p>Hello List Page!</p>
 <ul>
     <li v-for="(index,item) in items">
-         {{item.id}} : {{item.name}}
+         <item v-bind:avatar="item.avatar" v-bind:name="item.name" v-bind:excerpt="item.excerpt"></item>
     </li>
 </ul>
