@@ -13055,20 +13055,33 @@
 
 	module.exports = {
 	  '/': {
-	    component: __webpack_require__(6)
+	    component: __webpack_require__(6),
+
+	    //子路由
+	    subRoutes: {
+	      "/": {
+	        component: __webpack_require__(15)
+	      },
+	      "/tab1": {
+	        component: __webpack_require__(15)
+	      },
+	      "/tab2": {
+	        component: __webpack_require__(16)
+	      }
+	    }
 	  },
 	  '/list': {
 	    component: __webpack_require__(8)
 	  },
 	  '/show/:id': {
 	    name: "show",
-	    component: __webpack_require__(13)
+	    component: __webpack_require__(12)
 	  },
 	  '/item': {
-	    component: __webpack_require__(10)
+	    component: __webpack_require__(9)
 	  },
 	  '*': {
-	    component: __webpack_require__(12)
+	    component: __webpack_require__(14)
 	  }
 	};
 
@@ -13076,10 +13089,25 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
+
+	var _tab = __webpack_require__(15);
+
+	var _tab2 = _interopRequireDefault(_tab);
+
+	var _tab3 = __webpack_require__(16);
+
+	var _tab4 = _interopRequireDefault(_tab3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
 	  template: __webpack_require__(7),
+
+	  components: {
+	    "tab1": _tab2.default,
+	    "tab2": _tab4.default
+	  },
 
 	  ready: function ready() {}
 	};
@@ -13088,7 +13116,7 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"user\">\r\n    <div class=\"user__id\"></div>\r\n    <div class=\"user__description\">\r\n        <h2 class=\"user__username\">John Doe</h2>\r\n        <p><a v-link=\"{path:'/list'}\" >List Page</a><a v-link=\"{path:'/item'}\" >List item</a></p>\r\n        <p class=\"user__excerpt\">I'm John Doe, a vertically aligned type of guy.</p>\r\n    </div>\r\n</div>\r\n";
+	module.exports = "<h1>Index</h1>\r\n<hr/>\r\n<p>Hello World Index!</p>\r\n<p><a v-link=\"{path:'/list'}\" >List Page</a></p>\r\n<p><a v-link=\"{path:'./tab1'}\" >Tab1</a><a v-link=\"{path:'./tab2'}\" >Tab2</a></p>\r\n<router-view></router-view>\r\n";
 
 /***/ },
 /* 8 */
@@ -13096,14 +13124,14 @@
 
 	"use strict";
 
-	var _item = __webpack_require__(10);
+	var _item = __webpack_require__(9);
 
 	var _item2 = _interopRequireDefault(_item);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
-	  template: __webpack_require__(9),
+	  template: __webpack_require__(11),
 
 	  data: function data() {
 	    return { items: [{ "id": 1, "name": "John Doe", "excerpt": "I'm John Doe, a vertically aligned type of guy." }, { "id": 2, "name": "Sansha", "excerpt": "This is the second post." }] };
@@ -13158,18 +13186,12 @@
 
 /***/ },
 /* 9 */
-/***/ function(module, exports) {
-
-	module.exports = "<h1>List</h1>\r\n<hr/>\r\n\r\n<p>Hello List Page!</p>\r\n<ul>\r\n    <li v-for=\"(index,item) in items\">\r\n         <item v-bind:id=\"item.id\" v-bind:name=\"item.name\" v-bind:excerpt=\"item.excerpt\"></item>\r\n    </li>\r\n</ul>\r\n";
-
-/***/ },
-/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	module.exports = {
-	  template: __webpack_require__(11),
+	  template: __webpack_require__(10),
 
 	  props: ["id", "name", "excerpt"],
 
@@ -13183,25 +13205,25 @@
 	};
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"user\">\r\n    <div class=\"user__id\">{{id}}</div>\r\n    <div class=\"user__description\" v-link=\"{name:'show', params:{'id':id}}\">\r\n        <h2 class=\"user__username\">{{name}}</h2>\r\n        <p class=\"user__excerpt\">{{excerpt}}</p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports) {
 
-	"use strict";
+	module.exports = "<h1>List</h1>\r\n<hr/>\r\n\r\n<p>Hello List Page!</p>\r\n<ul>\r\n    <li v-for=\"(index,item) in items\">\r\n         <item v-bind:id=\"item.id\" v-bind:name=\"item.name\" v-bind:excerpt=\"item.excerpt\"></item>\r\n    </li>\r\n</ul>\r\n";
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	module.exports = {
-	  template: __webpack_require__(14),
+	  template: __webpack_require__(13),
 
 	  data: function data() {
 	    return {};
@@ -13209,7 +13231,8 @@
 
 	  created: function created() {
 	    var id = this.$route.params.id;
-	    if (id === 1) {
+	    //console.log(id);
+	    if (id == 1) {
 	      this.$data = { "id": id, "name": "hello111", "age": 24 };
 	    } else {
 	      this.$data = { "id": id, "name": "hello222", "age": 28 };
@@ -13222,10 +13245,36 @@
 	};
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1>Show</h1>\r\n<hr/>\r\n\r\n<p>Hello show page!</p>\r\n\r\n<p>id:{{id}}</p>\r\n<p>name:{{name}}</p>\r\n<p>age:{{age}}</p>\r\n";
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	  template: "<p>Tab1 content</p>"
+	};
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	  template: "<p>Tab2 content</p>"
+	};
 
 /***/ }
 /******/ ]);

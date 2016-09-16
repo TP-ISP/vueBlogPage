@@ -1,8 +1,6 @@
-<div class="user">
-    <div class="user__id"></div>
-    <div class="user__description">
-        <h2 class="user__username">John Doe</h2>
-        <p><a v-link="{path:'/list'}" >List Page</a><a v-link="{path:'/item'}" >List item</a></p>
-        <p class="user__excerpt">I'm John Doe, a vertically aligned type of guy.</p>
-    </div>
-</div>
+<h1>Index</h1>
+<hr/>
+<p>Hello World Index!</p>
+<p><a v-link="{path:'/list'}" >List Page</a></p>
+<p><a v-link="{path:'./tab1'}" >Tab1</a><a v-link="{path:'./tab2'}" >Tab2</a></p>
+<router-view></router-view>
